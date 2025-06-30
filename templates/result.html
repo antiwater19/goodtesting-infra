@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2025 재난지원금 신청 결과</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 5rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #004080;
+    }
+    .message {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    .eligible {
+      color: green;
+      font-weight: bold;
+    }
+    .ineligible {
+      color: #d9534f;
+      font-weight: bold;
+    }
+    .action-button {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 0.8rem 1.6rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .action-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>신청 결과 안내</h1>
+    <div class="message" id="result-message"></div>
+    <div id="button-area"></div>
+  </div>
+
+  <script>
+    const isEligible = sessionStorage.getItem("isEligible") === "true";
+    const name = sessionStorage.getItem("name");
+    const resultMessage = document.getElementById("result-message");
+    const buttonArea = document.getElementById("button-area");
+
+    if (isEligible) {
+      resultMessage.innerHTML = `
+        <p><strong>${name}</strong>님은 <span class="eligible">2025년 국민 재난지원금 신청 대상자</span>입니다.</p>
+        <p>지급 금액: <strong>250,000원</strong></p>
+        <p>신청 기간 내에 반드시 신청을 완료해주세요.</p>
+      `;
+      buttonArea.innerHTML = `<button class="action-button" id="submit-btn">신청하기</button>`;
+    } else {
+      resultMessage.innerHTML = `
+        <p><strong>${name}</strong>님은 <span class="ineligible">2025년 국민 재난지원금 신청 대상자가 아닙니다.</span></p>
+        <p>신청 기준에 따라 대상자 여부가 결정됩니다.</p>
+      `;
+      buttonArea.innerHTML = `<a href="index.html" class="action-button">처음으로 돌아가기</a>`;
+    }
+
+    // 신청 완료 후 index.html로 이동
+    document.addEventListener("DOMContentLoaded", () => {
+      const submitBtn = document.getElementById("submit-btn");
+      if (submitBtn) {
+        submitBtn.addEventListener("click", () => {
+          alert("신청이 완료되었습니다.");
+          location.href = "index.html";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 국민 지원금 신청</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-box {
+      background-color: #e9f5ff;
+      border-left: 6px solid #007bff;
+      padding: 1rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.4rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .auth-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .auth-buttons button {
+      flex: 1;
+      margin: 0 0.3rem;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .auth-buttons button:hover {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .submit-button {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #0056b3;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .checkbox-wrapper {
+      margin-top: 2rem;
+    }
+
+    .checkbox-wrapper h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .checkbox-group {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+      overflow: hidden;
+    }
+
+    .checkbox-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .checkbox-item:first-child {
+      border-top: none;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 0.8rem;
+    }
+
+    .dropdown-arrow {
+      font-size: 1.2rem;
+      color: #999;
+      margin-left: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>2025년 국민 재난지원금 신청</h1>
+    <p>국민지원금 조회 및 신청을 위한 공식 페이지입니다.</p>
+  </header>
+  <main>
+    <div class="info-box">
+      <strong>지원금액:</strong> 1인당 250,000원<br>
+      <strong>신청 가능 기간:</strong> 2025년 7월 1일 ~ 7월 31일<br>
+      <strong>5부제 신청 안내:</strong> 출생연도 끝자리 기준<br>
+      - 월: 1, 6 / 화: 2, 7 / 수: 3, 8 / 목: 4, 9 / 금: 5, 0<br>
+      - 토/일: 모두 신청 가능<br><br>
+      <strong>신청 기준:</strong><br>
+      - 성인: 본인 직접 신청<br>
+      - 미성년 자녀: 동일 주소지 세대주가 신청<br>
+      - 미성년 세대주: 본인 직접 신청 가능<br>
+      - 신청 시 00카드 필요
+    </div>
+    <form id="check-form">
+      <label for="name">성명</label>
+      <input type="text" id="name" name="name" required>
+      <label for="rrn">주민등록번호 (13자리) <small style="font-weight: normal; color: #888;">※ - 없이 숫자만 입력</small></label>
+      <input type="text" id="rrn" name="rrn" maxlength="13" required placeholder="예: 9012311234567">
+      <label for="phone">휴대폰 번호 <small style="font-weight: normal; color: #888;">※ - 없이 숫자만 입력</small></label>
+      <input type="tel" id="phone" name="phone" required placeholder="예: 01012345678" maxlength="11">
+      <label>인증 방법</label>
+      <div class="auth-buttons">
+        <button type="button" data-label="휴대폰 인증">휴대폰 인증</button>
+        <button type="button" data-label="카카오 인증">카카오 인증</button>
+        <button type="button" data-label="네이버 인증">네이버 인증</button>
+      </div>
+      <div class="checkbox-wrapper">
+        <h3>국민지원금 신청을 위해 아래 약관에 동의해주세요</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <div class="checkbox-label">
+              <input type="checkbox" id="agree-all">
+              <span>전체 약관에 동의합니다.</span>
+            </div>
+            <span class="dropdown-arrow">▾</span>
+          </div>
+          <div class="checkbox-item">
+            <div class="checkbox-label">
+              <input type="checkbox" class="agree-item">
+              <span>국민지원금 신청을 위한 개인정보 수집·이용 동의서 (필수)</span>
+            </div>
+            <span class="dropdown-arrow">▾</span>
+          </div>
+          <div class="checkbox-item">
+            <div class="checkbox-label">
+              <input type="checkbox" class="agree-item">
+              <span>개인정보 처리 위탁에 관한 사항 (필수)</span>
+            </div>
+            <span class="dropdown-arrow">▾</span>
+          </div>
+          <div class="checkbox-item">
+            <div class="checkbox-label">
+              <input type="checkbox" class="agree-item">
+              <span>국민지원금 처리 유의 확인 (필수)</span>
+            </div>
+            <span class="dropdown-arrow">▾</span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="submit-button">조회하기</button>
+      <div class="note">※ 신청 기간: 2025년 7월 1일 ~ 7월 31일 (5부제 시행)</div>
+    </form>
+  </main>
+  <script>
+    let isAuthenticated = false;
+    document.getElementById('agree-all').addEventListener('change', function () {
+      document.querySelectorAll('.agree-item').forEach(cb => cb.checked = this.checked);
+    });
+    document.querySelectorAll('.auth-buttons button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert(`${btn.getAttribute('data-label')} 완료되었습니다.`);
+        isAuthenticated = true;
+        document.querySelectorAll('.auth-buttons button').forEach(b => {
+          b.style.backgroundColor = 'white';
+          b.style.color = '#007bff';
+          b.textContent = b.getAttribute('data-label');
+        });
+        btn.style.backgroundColor = '#007bff';
+        btn.style.color = 'white';
+        btn.textContent = `${btn.getAttribute('data-label')} (인증 완료)`;
+      });
+    });
+    document.getElementById('check-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const rrn = document.getElementById('rrn').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const agreed = document.querySelectorAll('.agree-item:checked').length === document.querySelectorAll('.agree-item').length;
+      if (!/^[가-힣]{2,5}$/.test(name)) {
+        alert("이름은 한글 2~5자로 입력해주세요.");
+        return;
+      }
+      if (!/^\d{13}$/.test(rrn)) {
+        alert("주민등록번호는 13자리 숫자로 입력해주세요.");
+        return;
+      }
+      if (!/^01[016789]\d{7,8}$/.test(phone)) {
+        alert("휴대폰 번호를 정확히 입력해주세요.");
+        return;
+      }
+      if (!agreed) {
+        alert("모든 필수 약관에 동의해주세요.");
+        return;
+      }
+      if (!isAuthenticated) {
+        alert("인증을 완료해주세요.");
+        return;
+      }
+      const today = new Date();
+      const todayDay = today.getDay(); // 0: 일 ~ 6: 토
+      const year = parseInt(rrn.slice(0, 2));
+      const genderDigit = parseInt(rrn[6]);
+      const fullYear = genderDigit <= 2 ? 1900 + year : 2000 + year;
+      const lastDigit = fullYear % 10;
+      const validDigitsByDay = {
+        1: [1, 6],
+        2: [2, 7],
+        3: [3, 8],
+        4: [4, 9],
+        5: [5, 0]
+      };
+      if (todayDay >= 1 && todayDay <= 5) {
+        if (!validDigitsByDay[todayDay].includes(lastDigit)) {
+          alert(`오늘은 출생연도 끝자리가 ${validDigitsByDay[todayDay].join(', ')}인 분만 신청 가능합니다.`);
+          return;
+        }
+      }
+      const isEligible = parseInt(rrn[rrn.length - 1]) % 2 === 1;
+      sessionStorage.setItem("isEligible", isEligible);
+      sessionStorage.setItem("name", name);
+      location.href = "result.html";
+    });
+  </script>
+</body>
+
+</html>
